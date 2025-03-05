@@ -222,8 +222,8 @@ def fetch_news():
     results.append([ar["title"], ar["description"], ar["url"]])
   # Make news as 2 at a time to show on dashboard
   news = zip(results[::2], results[1::2])
-  if len(results) % 2:
-    news.append((results[-1], None))
+ # if len(results) % 2:
+ #   news.append((results[-1], None))
   return news
 
 

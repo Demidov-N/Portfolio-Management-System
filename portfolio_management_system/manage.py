@@ -1,8 +1,26 @@
-#!/usr/bin/env python
-"""Django's command-line utility for administrative tasks."""
 import os
 import sys
+from pathlib import Path
+from dotenv import load_dotenv
 
+# Detect if running in conda environment
+CONDA_PREFIX = os.environ.get('CONDA_PREFIX')
+if CONDA_PREFIX:
+    print(f"Running in conda environment: {os.path.basename(CONDA_PREFIX)}")
+
+# Load environment variables
+load_dotenv()
+
+# Build paths
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Use environment variable for SECRET_KEY with fallback
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-default-key-for-development')
+
+# Use environment variable for DEBUG
+DEBUG = os.getenv('DEBUG', 'True').lower() == 'true'
+
+# Rest of your settings file...
 
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'portfolio_management_system.settings')
